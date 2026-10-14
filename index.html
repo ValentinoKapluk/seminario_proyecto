@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Epic Sneakers | Tienda Oficial de Calzado Deportivo</title>
+  <meta name="description" content="Tienda especializada en zapatillas deportivas de alto rendimiento. Running, trail, escalada y modelos urbanos con la máxima amortiguación.">
+
+  <!-- Google Fonts: Roboto (Pesos 400, 500, 700, 900) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS v3 (CDN Oficial) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Configuración personalizada de Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'sans-serif'],
+          },
+          colors: {
+            // Fondo azul noche característico de Epic Sneakers en modo oscuro
+            night: '#0b1329',
+            nightCard: '#111c38',
+            nightBorder: '#1e293b'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Aseguramos que la fuente base sea Roboto y prevenimos desbordes horizontales */
+    body {
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-night dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col antialiased selection:bg-cyan-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 1. BARRA DE NAVEGACIÓN (HEADER / NAVBAR)                                 -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-night/90 border-b border-slate-200 dark:border-nightBorder transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo de la marca con gradiente cian -->
+      <a href="#inicio" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded-lg p-1">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+          <!-- Icono SVG de zapatilla deportiva / rayo -->
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">
+            EPIC SNEAKERS
+          </span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400 -mt-1">
+            Performance & Style
+          </span>
+        </div>
+      </a>
+
+      <!-- Menú horizontal de navegación (Desktop) -->
+      <nav class="hidden md:flex items-center gap-8 font-medium">
+        <a href="#inicio" class="text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer py-1">
+          Inicio
+        </a>
+        <a href="#catalogo" class="text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer py-1">
+          Catálogo & Precios
+        </a>
+        <a href="#nosotros" class="text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer py-1">
+          Quiénes Somos
+        </a>
+        <a href="#contacto" class="text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors cursor-pointer py-1">
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Botones de Acción (Toggle de tema + CTA) -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Botón para alternar Modo Claro / Modo Oscuro -->
+        <button 
+          id="theme-toggle" 
+          type="button" 
+          aria-label="Alternar modo claro y oscuro"
+          class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-cyan-500 dark:hover:text-cyan-400 hover:border-cyan-400 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400 shadow-sm"
+        >
+          <!-- Icono de Sol (visible en modo oscuro) -->
+          <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <!-- Icono de Luna (visible en modo claro) -->
+          <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+          </svg>
+        </button>
+
+        <!-- Botón CTA rápido (Desktop) -->
+        <a 
+          href="#catalogo" 
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+        >
+          Ver Ofertas
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </a>
+
+        <!-- Botón Menú Hamburguesa (Mobile) -->
+        <button 
+          id="mobile-menu-btn" 
+          type="button" 
+          aria-label="Abrir menú de navegación"
+          class="md:hidden p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-cyan-500 focus:outline-none cursor-pointer"
+        >
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Menú desplegable Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-nightBorder bg-white/95 dark:bg-night/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-3">
+      <a href="#inicio" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+        Inicio
+      </a>
+      <a href="#catalogo" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+        Catálogo & Precios
+      </a>
+      <a href="#nosotros" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+        Quiénes Somos
+      </a>
+      <a href="#contacto" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+        Contacto
+      </a>
+      <div class="pt-2">
+        <a href="#catalogo" class="mobile-link flex items-center justify-center w-full py-3 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/20">
+          Explorar Catálogo 2026
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. PORTADA DE INICIO (HERO SECTION)                                       -->
+  <!-- ========================================================================= -->
+  <section id="inicio" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden">
+    <!-- Efecto ambiental de luz de fondo con gradientes cian y rojo -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] bg-gradient-to-tr from-cyan-500/20 to-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute bottom-10 right-10 w-72 h-72 bg-rose-500/10 rounded-full blur-2xl pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Texto principal del Hero -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          
+          <!-- Badge promocional -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+            Nueva Colección Temporada 2026
+          </div>
+
+          <!-- Título H1 principal con Roboto en negrita y gradiente cian -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+            DOMINA CADA PASO CON <br>
+            <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">
+              EPIC SNEAKERS
+            </span>
+          </h1>
+
+          <!-- Párrafo descriptivo del propósito -->
+          <p class="text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Ingeniería de vanguardia, retorno de energía superior y tracción máxima diseñadas para corredores, aventureros de montaña y apasionados del estilo urbano.
+          </p>
+
+          <!-- Botones de Acción (Gradiente Cian y Gradiente Rojo) -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            
+            <!-- Botón primario: Gradiente Cian -->
+            <a 
+              href="#catalogo" 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+            >
+              Explorar Catálogo
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+
+            <!-- Botón secundario: Gradiente Rojo -->
+            <a 
+              href="#catalogo" 
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 shadow-lg shadow-rose-500/20 hover:shadow-rose-500/35 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+            >
+              Descuentos & Promos
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+              </svg>
+            </a>
+
+          </div>
+
+          <!-- Puntos clave / métricas rápidas -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-nightBorder text-center lg:text-left">
+            <div>
+              <div class="text-2xl md:text-3xl font-black text-cyan-500 dark:text-cyan-400">+50K</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Atletas Felices</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-black text-rose-500">100%</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Calzado Original</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-black text-blue-500">24/48 hs</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">Envíos Rápidos</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Banner visual destacado de la zapatilla Hero -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md lg:max-w-none group">
+            
+            <!-- Marco decorativo deportivo -->
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 to-rose-500 rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+            
+            <div class="relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-nightCard border border-slate-200 dark:border-nightBorder p-3 shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80" 
+                alt="Zapatilla deportiva roja Epic Sneakers con amortiguación reactiva" 
+                class="w-full h-80 sm:h-96 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                loading="eager"
+              >
+              <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center shadow-lg">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-rose-500">Edición Especial</span>
+                  <h3 class="text-base font-bold text-slate-900 dark:text-white">Epic Nitro Flame</h3>
+                </div>
+                <span class="text-lg font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">$149.99</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. CATÁLOGO DE PRODUCTOS (3 TARJETAS + MODAL EMERGENTE)                   -->
+  <!-- ========================================================================= -->
+  <section id="catalogo" class="py-20 bg-slate-50 dark:bg-[#080e1e] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de la sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-xs font-bold tracking-wider uppercase">
+          Catálogo Destacado & Precios
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+          ELIGE TU CALZADO DEPORTIVO
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300">
+          Haz clic en cualquier modelo para abrir los detalles técnicos completos, consultar disponibilidad de talles y promociones.
+        </p>
+      </div>
+
+      <!-- Grilla de 3 Tarjetas de Catálogo (1 columna en móvil, 3 en escritorio) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- ==================== TARJETA 1 ==================== -->
+        <article class="group rounded-2xl overflow-hidden bg-white dark:bg-nightCard border border-slate-200 dark:border-nightBorder shadow-md hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+          
+          <!-- Contenedor de la Imagen con Badge -->
+          <div class="relative overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=700&q=80" 
+              alt="Zapatillas de running profesionales Epic Speed Runner 2.0" 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            >
+            <!-- Badge de Promoción (Gradiente Rojo) -->
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-rose-500 to-red-600 shadow-md">
+              Promo 20% OFF
+            </span>
+            <span class="absolute top-4 right-4 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 dark:text-white bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm">
+              Running
+            </span>
+          </div>
+
+          <!-- Contenido de la Tarjeta -->
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider">Zapatillas para Correr</span>
+                <span class="text-xs text-slate-400">Talles 38 - 45</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors">
+                Epic Speed Runner 2.0
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                Espuma ultra-reactiva de retorno de energía y malla transpirable de alta resistencia para asfalto y maratón.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 line-through mr-1">$159.99</span>
+                <span class="text-2xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">$129.99</span>
+              </div>
+              
+              <!-- Botón Ver Detalles (dispara modal) -->
+              <button 
+                type="button" 
+                onclick="openProductModal(0)"
+                class="px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              >
+                Ver Detalles
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- ==================== TARJETA 2 ==================== -->
+        <article class="group rounded-2xl overflow-hidden bg-white dark:bg-nightCard border border-slate-200 dark:border-nightBorder shadow-md hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+          
+          <!-- Contenedor de la Imagen con Badge -->
+          <div class="relative overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=700&q=80" 
+              alt="Zapatillas de montaña y escalada Apex Mountain Grip X" 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            >
+            <!-- Badge de Novedad (Gradiente Cian) -->
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-blue-600 shadow-md">
+              Nuevo Modelo
+            </span>
+            <span class="absolute top-4 right-4 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 dark:text-white bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm">
+              Trail / Escalada
+            </span>
+          </div>
+
+          <!-- Contenido de la Tarjeta -->
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider">Zapatillas para Escalar</span>
+                <span class="text-xs text-slate-400">Talles 39 - 46</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors">
+                Apex Mountain Grip X
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                Suela dentada multidireccional de tracción extrema, puntera reforzada y membrana impermeable para montaña.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">$159.99</span>
+              </div>
+              
+              <!-- Botón Ver Detalles (dispara modal) -->
+              <button 
+                type="button" 
+                onclick="openProductModal(1)"
+                class="px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              >
+                Ver Detalles
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- ==================== TARJETA 3 ==================== -->
+        <article class="group rounded-2xl overflow-hidden bg-white dark:bg-nightCard border border-slate-200 dark:border-nightBorder shadow-md hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+          
+          <!-- Contenedor de la Imagen con Badge -->
+          <div class="relative overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-900">
+            <img 
+              src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=700&q=80" 
+              alt="Zapatillas deportivas urbanas Urban Boost Air Lite" 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            >
+            <!-- Badge Más Vendido (Gradiente Rojo) -->
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-rose-500 to-red-600 shadow-md">
+              Más Vendido
+            </span>
+            <span class="absolute top-4 right-4 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-900 dark:text-white bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm">
+              Urbano / Training
+            </span>
+          </div>
+
+          <!-- Contenido de la Tarjeta -->
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider">Moda Urbana & Gym</span>
+                <span class="text-xs text-slate-400">Talles 37 - 44</span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 transition-colors">
+                Urban Boost Air Lite
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-2">
+                Cápsula de aire perimetral para máxima suavidad al caminar, diseño vanguardista y versatilidad diaria.
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+              <div>
+                <span class="text-2xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">$109.99</span>
+              </div>
+              
+              <!-- Botón Ver Detalles (dispara modal) -->
+              <button 
+                type="button" 
+                onclick="openProductModal(2)"
+                class="px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              >
+                Ver Detalles
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE DETALLES DEL PRODUCTO (VENTANA EMERGENTE DINÁMICA)               -->
+  <!-- ========================================================================= -->
+  <div 
+    id="product-modal" 
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <!-- Contenedor interior del Modal -->
+    <div 
+      id="modal-card" 
+      class="bg-white dark:bg-nightCard border border-slate-200 dark:border-nightBorder rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col"
+    >
+      
+      <!-- Cabecera del modal con botón de cierre -->
+      <div class="p-6 border-b border-slate-200 dark:border-nightBorder flex items-center justify-between">
+        <div>
+          <span id="modal-category" class="text-xs font-bold tracking-wider text-cyan-600 dark:text-cyan-400 uppercase">Categoría</span>
+          <h3 id="modal-title" class="text-2xl font-black text-slate-900 dark:text-white">Nombre de Producto</h3>
+        </div>
+        <!-- Botón para cerrar modal -->
+        <button 
+          type="button" 
+          onclick="closeProductModal()"
+          class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer focus:outline-none"
+          aria-label="Cerrar ventana emergente"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Cuerpo deslizable del modal -->
+      <div class="p-6 overflow-y-auto space-y-6">
+        
+        <!-- Imagen ampliada con badge -->
+        <div class="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-slate-900">
+          <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+          <span id="modal-badge" class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white bg-gradient-to-r from-rose-500 to-red-600">
+            Promo
+          </span>
+        </div>
+
+        <!-- Descripción detallada -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Descripción del Producto</h4>
+          <p id="modal-description" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            Texto explicativo ampliado...
+          </p>
+        </div>
+
+        <!-- Especificaciones técnicas -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+            <div class="text-[11px] text-slate-400 uppercase font-semibold">Peso</div>
+            <div id="modal-weight" class="text-sm font-bold text-slate-900 dark:text-white">240g</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+            <div class="text-[11px] text-slate-400 uppercase font-semibold">Amortiguación</div>
+            <div id="modal-cushion" class="text-sm font-bold text-slate-900 dark:text-white">Nitro Foam</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+            <div class="text-[11px] text-slate-400 uppercase font-semibold">Superficie</div>
+            <div id="modal-surface" class="text-sm font-bold text-slate-900 dark:text-white">Asfalto</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+            <div class="text-[11px] text-slate-400 uppercase font-semibold">Garantía</div>
+            <div class="text-sm font-bold text-emerald-500">6 Meses</div>
+          </div>
+        </div>
+
+        <!-- Selector interactivo de Talles -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-bold uppercase tracking-wider text-slate-400">Selecciona tu Talle (ARG/EU)</span>
+            <span id="selected-size-label" class="text-xs font-bold text-cyan-500">Talle 41 seleccionado</span>
+          </div>
+          <div class="flex flex-wrap gap-2" id="sizes-container">
+            <!-- Botones de talles generados o marcados -->
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">38</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">39</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">40</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-white border border-cyan-500 cursor-pointer">41</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">42</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">43</button>
+            <button type="button" onclick="selectSize(this)" class="size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer">44</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie del modal con precio y botón de confirmación -->
+      <div class="p-6 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-nightBorder flex items-center justify-between">
+        <div>
+          <span class="text-xs text-slate-400 uppercase font-semibold block">Precio Final</span>
+          <span id="modal-price" class="text-3xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">$129.99</span>
+        </div>
+        <button 
+          type="button" 
+          onclick="simulateReservation()"
+          class="px-6 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-lg shadow-cyan-500/25 transition-all duration-300 cursor-pointer flex items-center gap-2"
+        >
+          <span id="reserve-btn-text">Reservar Ahora</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. SECCIÓN QUIÉNES SOMOS / VALORES DE MARCA                               -->
+  <!-- ========================================================================= -->
+  <section id="nosotros" class="py-20 border-t border-slate-200 dark:border-nightBorder">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold tracking-wider uppercase">
+            Identidad Epic
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+            PASIÓN POR EL CALZADO Y EL ALTO RENDIMIENTO
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+            En <strong>Epic Sneakers</strong> creemos que el calzado deportivo adecuado transforma el entrenamiento. Nacimos con el objetivo de traer al país los modelos más avanzados de running, trekking y estilo urbano, combinando comodidad y durabilidad probada en los terrenos más exigentes.
+          </p>
+          
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-500 shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white">Garantía de Originalidad</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Trabajamos únicamente con distribuidores oficiales autorizados en todas las marcas.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="p-2.5 rounded-xl bg-rose-500/10 text-rose-500 shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 dark:text-white">Asesoramiento Personalizado</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Te ayudamos a elegir la zapatilla según tu peso, tipo de pisada y superficie de uso.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-nightBorder">
+            <img 
+              src="https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&w=900&q=80" 
+              alt="Corredor atando sus zapatillas deportivas Epic Sneakers" 
+              class="w-full h-96 object-cover"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. FORMULARIO DE CONTACTO INTERACTIVO                                     -->
+  <!-- ========================================================================= -->
+  <section id="contacto" class="py-20 bg-slate-50 dark:bg-[#080e1e] transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado de la sección de contacto -->
+      <div class="text-center mb-12 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 text-xs font-bold tracking-wider uppercase">
+          Canal de Contacto Directo
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black tracking-tight">
+          ¿TIENES PREGUNTAS SOBRE UN MODELO O TALLE?
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300">
+          Déjanos tu consulta y un asesor deportivo de Epic Sneakers te responderá en minutos.
+        </p>
+      </div>
+
+      <!-- Tarjeta del Formulario -->
+      <div class="bg-white dark:bg-nightCard border border-slate-200 dark:border-nightBorder rounded-3xl p-6 sm:p-10 shadow-xl">
+        
+        <!-- Cartel de Notificación / Alerta Dinámica (Error o Éxito) -->
+        <div id="form-alert" class="hidden mb-6 p-4 rounded-xl text-sm font-medium transition-all duration-300" role="alert">
+          <!-- El texto e icono se inyectan dinámicamente con JavaScript -->
+        </div>
+
+        <!-- Formulario -->
+        <form id="contact-form" onsubmit="handleContactSubmit(event)" novalidate class="space-y-6">
+          
+          <!-- Fila 1 (Desktop: 2 columnas una al lado de la otra / Móvil: 1 columna vertical) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Campo 1: Nombre -->
+            <div class="space-y-2">
+              <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Nombre Completo <span class="text-rose-500">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="nombre" 
+                name="nombre" 
+                placeholder="Ej. Martín González" 
+                class="w-full px-4 py-3.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200"
+              >
+            </div>
+
+            <!-- Campo 2: Correo Electrónico -->
+            <div class="space-y-2">
+              <label for="email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+                Correo Electrónico <span class="text-rose-500">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="Ej. martin@ejemplo.com" 
+                class="w-full px-4 py-3.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200"
+              >
+            </div>
+
+          </div>
+
+          <!-- Fila 2: Área del Mensaje (abajo de las anteriores) -->
+          <div class="space-y-2">
+            <label for="mensaje" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
+              Mensaje o Consulta <span class="text-rose-500">*</span>
+            </label>
+            <textarea 
+              id="mensaje" 
+              name="mensaje" 
+              rows="4" 
+              placeholder="Escribe aquí tu consulta sobre modelos, talles, medios de pago o envíos..." 
+              class="w-full px-4 py-3.5 rounded-xl border border-slate-300 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-200 resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Fila 3: Botón de Enviar (abajo de todo) -->
+          <div>
+            <button 
+              type="submit" 
+              id="submit-btn"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-xl shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            >
+              <span>Enviar Mensaje</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. PIE DE PÁGINA (FOOTER)                                                 -->
+  <!-- ========================================================================= -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-nightBorder bg-slate-100 dark:bg-[#070b16] text-slate-600 dark:text-slate-400 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        
+        <!-- Columna 1: Identidad -->
+        <div class="space-y-4 md:col-span-1">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <span class="text-xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              EPIC SNEAKERS
+            </span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            Tienda oficial especializada en zapatillas deportivas de alto rendimiento. Envíos seguros a todo el país.
+          </p>
+        </div>
+
+        <!-- Columna 2: Atajos de Navegación -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Navegación</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#inicio" class="hover:text-cyan-500 transition-colors cursor-pointer">Inicio</a></li>
+            <li><a href="#catalogo" class="hover:text-cyan-500 transition-colors cursor-pointer">Catálogo & Precios</a></li>
+            <li><a href="#nosotros" class="hover:text-cyan-500 transition-colors cursor-pointer">Quiénes Somos</a></li>
+            <li><a href="#contacto" class="hover:text-cyan-500 transition-colors cursor-pointer">Contacto Directo</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Marcas Asociadas -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Marcas Oficiales</h4>
+          <ul class="space-y-2 text-xs">
+            <li class="hover:text-cyan-500 transition-colors">Nike Performance</li>
+            <li class="hover:text-cyan-500 transition-colors">Adidas Running</li>
+            <li class="hover:text-cyan-500 transition-colors">Salomon Trail & Outdoor</li>
+            <li class="hover:text-cyan-500 transition-colors">Puma Nitro Pro</li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Ubicación y Horarios -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">Atención al Cliente</h4>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            📍 Río Cuarto, Córdoba, Argentina<br>
+            ⏰ Lunes a Sábados: 09:00 - 20:00 hs<br>
+            📧 contacto@epicsneakers.com
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Barra inferior de copyright -->
+      <div class="pt-8 mt-8 border-t border-slate-200 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        <p>© 2026 Epic Sneakers — Todos los derechos reservados. Diseñado para alto rendimiento.</p>
+        <p class="text-slate-400">Proyecto Web Profesional — ITEC Prog2</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 7. INTERACTIVIDAD JAVASCRIPT (MODULAR, SEMÁNTICA Y COMENTADA)             -->
+  <!-- ========================================================================= -->
+  <script>
+    /**
+     * BASE DE DATOS LOCAL DE PRODUCTOS
+     * Contiene la información de las 3 tarjetas y la ficha técnica del modal
+     */
+    const productosData = [
+      {
+        id: 0,
+        nombre: "Epic Speed Runner 2.0",
+        categoria: "Zapatillas para Correr (Running)",
+        precio: "$129.99",
+        badge: "Promo 20% OFF",
+        imagen: "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=1000&q=80",
+        descripcion: "Diseñadas para maximizar el ritmo de carrera en distancias de 10K a maratón. Cuentan con espuma hiper-reactiva, plantilla antibacteriana y placa interna que optimiza cada zancada, disminuyendo el cansancio muscular.",
+        peso: "235g",
+        amortiguacion: "Nitro Foam Max",
+        superficie: "Asfalto / Pista",
+        talles: [38, 39, 40, 41, 42, 43, 44, 45]
+      },
+      {
+        id: 1,
+        nombre: "Apex Mountain Grip X",
+        categoria: "Zapatillas para Escalar & Trail",
+        precio: "$159.99",
+        badge: "Nuevo Modelo",
+        imagen: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=1000&q=80",
+        descripcion: "Construidas para soportar los terrenos más hostiles de montaña y senderismo. Su suela con tacos bidireccionales garantiza adherencia en roca húmeda, barro y pendientes pronunciadas con puntera de goma reforzada.",
+        peso: "320g",
+        amortiguacion: "Trail Shield 3D",
+        superficie: "Roca / Montaña",
+        talles: [39, 40, 41, 42, 43, 44, 45, 46]
+      },
+      {
+        id: 2,
+        nombre: "Urban Boost Air Lite",
+        categoria: "Moda Urbana & Training",
+        precio: "$109.99",
+        badge: "Más Vendido",
+        imagen: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1000&q=80",
+        descripcion: "El equilibrio definitivo entre comodidad para el día a día y soporte para entrenamientos en el gimnasio. Cápsula de aire visible en el talón que absorbe el impacto continuo y tejido elástico transpirable.",
+        peso: "260g",
+        amortiguacion: "Air 360 Cushion",
+        superficie: "Urbano / Gimnasio",
+        talles: [37, 38, 39, 40, 41, 42, 43, 44]
+      }
+    ];
+
+    // =========================================================================
+    // A. GESTIÓN DEL MODO CLARO / OSCURO (CON PERSISTENCIA EN LOCALSTORAGE)
+    // =========================================================================
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+    /**
+     * Aplica el tema seleccionado ('dark' o 'light')
+     */
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        darkIcon.classList.remove('hidden');
+        lightIcon.classList.add('hidden');
+      }
+      localStorage.setItem('epic_theme', theme);
+    }
+
+    // Inicialización: Modo Oscuro por defecto según directiva
+    const savedTheme = localStorage.getItem('epic_theme') || 'dark';
+    applyTheme(savedTheme);
+
+    // Event listener para alternar tema al hacer clic
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+
+    // =========================================================================
+    // B. MENÚ RESPONSIVE MÓVIL (HAMBURGUESA)
+    // =========================================================================
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = !mobileMenu.classList.contains('hidden');
+      if (isExpanded) {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      }
+    });
+
+    // Cerrar menú móvil al hacer clic en cualquier enlace
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+
+    // =========================================================================
+    // C. VENTANA EMERGENTE MODAL DE PRODUCTO
+    // =========================================================================
+    const productModal = document.getElementById('product-modal');
+    const modalCard = document.getElementById('modal-card');
+
+    /**
+     * Abre el modal e inyecta la información del producto correspondiente
+     */
+    function openProductModal(index) {
+      const prod = productosData[index];
+      if (!prod) return;
+
+      document.getElementById('modal-title').textContent = prod.nombre;
+      document.getElementById('modal-category').textContent = prod.categoria;
+      document.getElementById('modal-price').textContent = prod.precio;
+      document.getElementById('modal-badge').textContent = prod.badge;
+      document.getElementById('modal-description').textContent = prod.descripcion;
+      document.getElementById('modal-weight').textContent = prod.peso;
+      document.getElementById('modal-cushion').textContent = prod.amortiguacion;
+      document.getElementById('modal-surface').textContent = prod.superficie;
+
+      const imgElem = document.getElementById('modal-image');
+      imgElem.src = prod.imagen;
+      imgElem.alt = prod.nombre;
+
+      // Renderizar talles
+      const sizesContainer = document.getElementById('sizes-container');
+      sizesContainer.innerHTML = '';
+      prod.talles.forEach((talle, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = talle;
+        const isSelected = i === 2; // Talle por defecto seleccionado
+        btn.className = isSelected 
+          ? 'size-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-white border border-cyan-500 cursor-pointer transition-all'
+          : 'size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer transition-all';
+        btn.onclick = () => selectSize(btn, talle);
+        sizesContainer.appendChild(btn);
+      });
+
+      document.getElementById('selected-size-label').textContent = `Talle ${prod.talles[2]} seleccionado`;
+      document.getElementById('reserve-btn-text').textContent = 'Reservar Ahora';
+
+      // Mostrar modal con animación de entrada
+      productModal.classList.remove('hidden');
+      setTimeout(() => {
+        productModal.classList.remove('opacity-0');
+        modalCard.classList.remove('scale-95');
+        modalCard.classList.add('scale-100');
+      }, 10);
+
+      // Bloquear scroll del fondo
+      document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Cierra el modal de detalles
+     */
+    function closeProductModal() {
+      productModal.classList.add('opacity-0');
+      modalCard.classList.remove('scale-100');
+      modalCard.classList.add('scale-95');
+      setTimeout(() => {
+        productModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    /**
+     * Maneja la selección visual de un talle
+     */
+    function selectSize(btn, talle) {
+      document.querySelectorAll('.size-btn').forEach(b => {
+        b.className = 'size-btn px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-800 hover:border-cyan-400 text-slate-700 dark:text-slate-300 cursor-pointer transition-all';
+      });
+      btn.className = 'size-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-white border border-cyan-500 cursor-pointer transition-all';
+      document.getElementById('selected-size-label').textContent = `Talle ${talle} seleccionado`;
+    }
+
+    /**
+     * Simulación de reserva dentro del modal
+     */
+    function simulateReservation() {
+      const btnText = document.getElementById('reserve-btn-text');
+      btnText.textContent = '¡Talle Reservado con Éxito!';
+      setTimeout(() => {
+        closeProductModal();
+      }, 1200);
+    }
+
+    // Cerrar modal al hacer clic en el backdrop oscuro
+    productModal.addEventListener('click', (e) => {
+      if (e.target === productModal) {
+        closeProductModal();
+      }
+    });
+
+    // Cerrar modal con tecla Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !productModal.classList.contains('hidden')) {
+        closeProductModal();
+      }
+    });
+
+    // =========================================================================
+    // D. FORMULARIO DE CONTACTO Y VALIDACIONES
+    // =========================================================================
+    function handleContactSubmit(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+      const alertBox = document.getElementById('form-alert');
+
+      // Validación 1: Comprobar que no falte información en ningún campo
+      if (!nombre || !email || !mensaje) {
+        alertBox.className = 'mb-6 p-4 rounded-xl text-sm font-bold bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 flex items-center gap-3 transition-all duration-300';
+        alertBox.innerHTML = `
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <span>Por favor, completa todos los campos requeridos (Nombre, Correo y Mensaje) antes de enviar.</span>
+        `;
+        alertBox.classList.remove('hidden');
+        return;
+      }
+
+      // Validación 2: Comprobar formato básico de correo electrónico
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alertBox.className = 'mb-6 p-4 rounded-xl text-sm font-bold bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 flex items-center gap-3 transition-all duration-300';
+        alertBox.innerHTML = `
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>El formato del correo electrónico ingresado no es válido.</span>
+        `;
+        alertBox.classList.remove('hidden');
+        return;
+      }
+
+      // Éxito: Mostrar cartel exacto pactado en la entrevista
+      alertBox.className = 'mb-6 p-4 rounded-xl text-sm font-bold bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 flex items-center gap-3 transition-all duration-300';
+      alertBox.innerHTML = `
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span>Los datos han sido enviados correctamente</span>
+      `;
+      alertBox.classList.remove('hidden');
+
+      // Limpiar los campos del formulario
+      document.getElementById('contact-form').reset();
+
+      // Ocultar suavemente el aviso después de 6 segundos
+      setTimeout(() => {
+        alertBox.classList.add('hidden');
+      }, 6000);
+    }
+  </script>
+
+</body>
+</html>
